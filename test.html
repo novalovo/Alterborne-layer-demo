@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>Alterborne Shift</title>
+<style>body{margin:0;background:#000;display:flex;justify-content:center;align-items:center;height:100vh;overflow:hidden;touch-action:none}canvas{background:#111;display:block}#ui{position:fixed;bottom:10px;left:0;right:0;display:flex;justify-content:space-around;align-items:center;color:#fff;font-family:monospace}#shift{padding:10px 20px;background:#2196F3;border:none;color:#fff;border-radius:4px;font-size:18px}#veil{margin-left:10px}</style>
+</head>
+<body>
+<canvas id=c></canvas>
+<div id=ui><button id=shift>SHIFT</button><span id=veil>Veil 100</span></div>
+<script>
+const W=18,H=10,SIZE=32,VMAX=100;
+const c=document.getElementById('c'),ctx=c.getContext('2d');
+c.width=W*SIZE;c.height=H*SIZE;
+let px=2,py=5,over=true,veil=VMAX,cd=0,drag=false;
+const door={x:14,y:3,w:1,h:3}; // locked only on Over
+function draw(){
+  ctx.fillStyle=over?'#2196F3':'#9C27B0';
+  ctx.fillRect(0,0,c.width,c.height);
+  ctx.fillStyle='#000';
+  if(over)ctx.fillRect(door.x*SIZE,door.y*SIZE,door.w*SIZE,door.h*SIZE);
+  ctx.fillStyle='#FFEB3B'; // player
+  ctx.fillRect(px*SIZE+4,py*SIZE+4,SIZE-8,SIZE-8);
+  veil=Math.max(0,Math.min(VMAX,ve
